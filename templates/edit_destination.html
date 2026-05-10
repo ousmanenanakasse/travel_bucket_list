@@ -1,0 +1,46 @@
+<h1>Edit Destination</h1>
+
+<form method="POST">
+    <label>Destination Name:</label>
+    <input type="text" name="name" value="{{ destination['name'] }}" required>
+
+    <br><br>
+
+    <label>Country:</label>
+    <input type="text" name="country" value="{{ destination['country'] }}" required>
+
+    <br><br>
+
+    <label>Reason:</label>
+    <input type="text" name="reason" value="{{ destination['reason'] }}" required>
+
+    <br><br>
+
+    <label>Priority:</label>
+    <select name="priority">
+        <option {% if destination['priority']=='Low' %}selected{% endif %}>Low</option>
+        <option {% if destination['priority']=='Medium' %}selected{% endif %}>Medium</option>
+        <option {% if destination['priority']=='High' %}selected{% endif %}>High</option>
+    </select>
+
+    <br><br>
+
+    <label>Status:</label>
+    <select name="status">
+        <option {% if destination['status']=='Planned' %}selected{% endif %}>Planned</option>
+        <option {% if destination['status']=='Visited' %}selected{% endif %}>Visited</option>
+    </select>
+
+    <br><br>
+
+    <label>Estimated Budget:</label>
+    <input type="number" step="0.01" name="budget" value="{{ destination['budget'] }}" required>
+
+    <br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+<br>
+
+<a href="/dashboard">Back</a>

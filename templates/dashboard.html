@@ -1,0 +1,29 @@
+<h1>Travel Bucket List</h1>
+
+<p>Welcome, {{ session["username"] }}</p>
+
+<a href="/add">Add New Destination</a>
+<br>
+<a href="/logout">Logout</a>
+
+<hr>
+
+{% if destinations %}
+{% for destination in destinations %}
+<h2>{{ destination["name"] }}</h2>
+
+<p>Country: {{ destination["country"] }}</p>
+<p>Reason: {{ destination["reason"] }}</p>
+<p>Priority: {{ destination["priority"] }}</p>
+<p>Status: {{ destination["status"] }}</p>
+<p>Budget: {{ destination["budget"] }}</p>
+
+<a href="/edit/{{ destination['id'] }}">Edit</a>
+<br>
+<a href="/delete/{{ destination['id'] }}">Delete</a>
+
+<hr>
+{% endfor %}
+{% else %}
+<p>No destinations yet.</p>
+{% endif %}
