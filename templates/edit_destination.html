@@ -1,46 +1,161 @@
-<h1>Edit Destination</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST">
-    <label>Destination Name:</label>
-    <input type="text" name="name" value="{{ destination['name'] }}" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Destination</title>
+</head>
 
-    <br><br>
+<body>
 
-    <label>Country:</label>
-    <input type="text" name="country" value="{{ destination['country'] }}" required>
+    <header>
+        <h1>Edit Destination</h1>
+    </header>
 
-    <br><br>
+    <main>
 
-    <label>Reason:</label>
-    <input type="text" name="reason" value="{{ destination['reason'] }}" required>
+        <form method="POST">
 
-    <br><br>
+            <div>
+                <label for="name">Destination Name:</label>
+                <br>
 
-    <label>Priority:</label>
-    <select name="priority">
-        <option {% if destination['priority']=='Low' %}selected{% endif %}>Low</option>
-        <option {% if destination['priority']=='Medium' %}selected{% endif %}>Medium</option>
-        <option {% if destination['priority']=='High' %}selected{% endif %}>High</option>
-    </select>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ destination['name'] }}"
+                    required
+                >
+            </div>
 
-    <br><br>
+            <br>
 
-    <label>Status:</label>
-    <select name="status">
-        <option {% if destination['status']=='Planned' %}selected{% endif %}>Planned</option>
-        <option {% if destination['status']=='Visited' %}selected{% endif %}>Visited</option>
-    </select>
+            <div>
+                <label for="country">Country:</label>
+                <br>
 
-    <br><br>
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value="{{ destination['country'] }}"
+                    required
+                >
+            </div>
 
-    <label>Estimated Budget:</label>
-    <input type="number" step="0.01" name="budget" value="{{ destination['budget'] }}" required>
+            <br>
 
-    <br><br>
+            <div>
+                <label for="reason">Reason to Visit:</label>
+                <br>
 
-    <button type="submit">Update</button>
-</form>
+                <input
+                    type="text"
+                    id="reason"
+                    name="reason"
+                    value="{{ destination['reason'] }}"
+                    required
+                >
+            </div>
 
-<br>
+            <br>
 
-<a href="/dashboard">Back</a>
+            <div>
+                <label for="priority">Priority:</label>
+                <br>
+
+                <select id="priority" name="priority">
+
+                    <option
+                        {% if destination['priority'] == 'Low' %}
+                            selected
+                        {% endif %}
+                    >
+                        Low
+                    </option>
+
+                    <option
+                        {% if destination['priority'] == 'Medium' %}
+                            selected
+                        {% endif %}
+                    >
+                        Medium
+                    </option>
+
+                    <option
+                        {% if destination['priority'] == 'High' %}
+                            selected
+                        {% endif %}
+                    >
+                        High
+                    </option>
+
+                </select>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="status">Status:</label>
+                <br>
+
+                <select id="status" name="status">
+
+                    <option
+                        {% if destination['status'] == 'Planned' %}
+                            selected
+                        {% endif %}
+                    >
+                        Planned
+                    </option>
+
+                    <option
+                        {% if destination['status'] == 'Visited' %}
+                            selected
+                        {% endif %}
+                    >
+                        Visited
+                    </option>
+
+                </select>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="budget">Estimated Budget:</label>
+                <br>
+
+                <input
+                    type="number"
+                    id="budget"
+                    name="budget"
+                    step="0.01"
+                    value="{{ destination['budget'] }}"
+                    required
+                >
+            </div>
+
+            <br>
+
+            <div>
+                <button type="submit">
+                    Update Destination
+                </button>
+            </div>
+
+        </form>
+
+        <br>
+
+        <a href="/dashboard">
+            Back to Dashboard
+        </a>
+
+    </main>
+
+</body>
+
+</html>

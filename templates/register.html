@@ -1,18 +1,58 @@
-<h1>Register</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST">
-    <label>Username:</label>
-    <input type="text" name="username" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
 
-    <br><br>
+<body>
 
-    <label>Password:</label>
-    <input type="password" name="password" required>
+    <header>
+        <h1>Travel Bucket List</h1>
+        <h2>Register</h2>
+    </header>
 
-    <br><br>
+    <main>
 
-    <button type="submit">Register</button>
-</form>
+        <section>
 
-<p>Already have an account?</p>
-<a href="/login">Login</a>
+            <form method="POST">
+
+                <div>
+                    <label for="username">Username:</label>
+                    <br>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="password">Password:</label>
+                    <br>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <br>
+
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+
+            </form>
+
+        </section>
+
+        <br>
+
+        <section>
+            <p>Already have an account?</p>
+            <a href="/login">Go to Login</a>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

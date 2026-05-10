@@ -1,46 +1,106 @@
-<h1>Add Destination</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST">
-    <label>Destination Name:</label>
-    <input type="text" name="name" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Destination</title>
+</head>
 
-    <br><br>
+<body>
 
-    <label>Country:</label>
-    <input type="text" name="country" required>
+    <header>
+        <h1>Add New Destination</h1>
+    </header>
 
-    <br><br>
+    <main>
 
-    <label>Reason:</label>
-    <input type="text" name="reason" required>
+        <form method="POST">
 
-    <br><br>
+            <div>
+                <label for="name">Destination Name:</label>
+                <br>
+                <input type="text" id="name" name="name" required>
+            </div>
 
-    <label>Priority:</label>
-    <select name="priority">
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-    </select>
+            <br>
 
-    <br><br>
+            <div>
+                <label for="country">Country:</label>
+                <br>
+                <input type="text" id="country" name="country" required>
+            </div>
 
-    <label>Status:</label>
-    <select name="status">
-        <option>Planned</option>
-        <option>Visited</option>
-    </select>
+            <br>
 
-    <br><br>
+            <div>
+                <label for="reason">Reason to Visit:</label>
+                <br>
+                <input type="text" id="reason" name="reason" required>
+            </div>
 
-    <label>Estimated Budget:</label>
-    <input type="number" step="0.01" name="budget" required>
+            <br>
 
-    <br><br>
+            <div>
+                <label for="priority">Priority:</label>
+                <br>
 
-    <button type="submit">Save</button>
-</form>
+                <select id="priority" name="priority">
 
-<br>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
 
-<a href="/dashboard">Back</a>
+                </select>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="status">Status:</label>
+                <br>
+
+                <select id="status" name="status">
+
+                    <option>Planned</option>
+                    <option>Visited</option>
+
+                </select>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="budget">Estimated Budget:</label>
+                <br>
+
+                <input
+                    type="number"
+                    id="budget"
+                    name="budget"
+                    step="0.01"
+                    required
+                >
+            </div>
+
+            <br>
+
+            <div>
+                <button type="submit">
+                    Save Destination
+                </button>
+            </div>
+
+        </form>
+
+        <br>
+
+        <a href="/dashboard">
+            Back to Dashboard
+        </a>
+
+    </main>
+
+</body>
+
+</html>
