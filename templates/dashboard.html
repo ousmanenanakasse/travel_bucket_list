@@ -1,136 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dashboard</title>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+        }
+
+        h1, .welcome {
+            text-align: center;
+        }
+
+        .links {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .links a {
+            margin: 10px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .actions a {
+            margin-right: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <center>
+    <div class="container">
 
-        <h1>
-            Travel Bucket List Dashboard
-        </h1>
+        <h1>Travel Bucket List Dashboard</h1>
 
-        <h3>
-             WELCOME 
-        </h3>
+        <div class="welcome">
+            <p>WELCOME BACK</p>
+            <h2>{{ session["username"] | upper }}</h2>
+        </div>
 
-        <h2>
-            <strong>
-                {{ session["username"] | upper }}
-            </strong>
-        </h2>
+        <div class="links">
+            <a href="/add">Add New Destination</a>
+            <a href="/logout">Logout</a>
+        </div>
 
-        <hr width="50%">
+        {% if destinations %}
 
-        <p>
-            <a href="/add">
-                Add New Destination
-            </a>
-        </p>
+            {% for destination in destinations %}
 
-        <p>
-            <a href="/logout">
-                Logout
-            </a>
-        </p>
+                <div class="card">
+                    <h2>{{ destination["name"] | upper }}</h2>
 
-    </center>
+                    <p><strong>Country:</strong> {{ destination["country"] }}</p>
+                    <p><strong>Reason:</strong> {{ destination["reason"] }}</p>
+                    <p><strong>Priority:</strong> {{ destination["priority"] }}</p>
+                    <p><strong>Status:</strong> {{ destination["status"] }}</p>
+                    <p><strong>Budget:</strong> {{ destination["budget"] }}</p>
+                    <p><strong>Created:</strong> {{ destination["created_at"] }}</p>
 
-    <hr>
+                    <div class="actions">
+                        <a href="/edit/{{ destination['id'] }}">Edit Destination</a>
+                        <a href="/delete/{{ destination['id'] }}">Delete Destination</a>
+                    </div>
+                </div>
 
-    {% if destinations %}
+            {% endfor %}
 
-        {% for destination in destinations %}
+        {% else %}
 
-            <h2>
-                {{ destination["name"] | upper }}
-            </h2>
+            <div class="card">
+                <h2>No Destinations Found</h2>
+                <p>You have not added any travel destinations yet.</p>
+            </div>
 
-            <ul>
+        {% endif %}
 
-                <li>
-                    <strong>Country:</strong>
-                    {{ destination["country"] | upper }}
-                </li>
-
-                <br>
-
-                <li>
-                    <strong>Reason:</strong>
-                    {{ destination["reason"] }}
-                </li>
-
-                <br>
-
-                <li>
-                    <strong>Priority:</strong>
-                    {{ destination["priority"] }}
-                </li>
-
-                <br>
-
-                <li>
-                    <strong>Status:</strong>
-                    {{ destination["status"] }}
-                </li>
-
-                <br>
-
-                <li>
-                    <strong>Budget:</strong>
-                    {{ destination["budget"] }}
-                </li>
-
-                <br>
-
-                <li>
-                    <strong>Created:</strong>
-                    {{ destination["created_at"] }}
-                </li>
-
-            </ul>
-
-            <p>
-                <a href="/edit/{{ destination['id'] }}">
-                    Edit Destination
-                </a>
-            </p>
-
-            <p>
-                <a href="/delete/{{ destination['id'] }}">
-                    Delete Destination
-                </a>
-            </p>
-
-            <hr>
-
-        {% endfor %}
-
-    {% else %}
-
-        <center>
-
-            <h2>
-                No Destinations Found
-            </h2>
-
-            <p>
-                You have not added any travel destinations yet.
-            </p>
-
-        </center>
-
-    {% endif %}
+    </div>
 
 </body>
-
 </html>
