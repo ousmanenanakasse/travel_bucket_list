@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from database import get_db_connection, init_db
 from logic import is_valid_budget, is_valid_priority, is_valid_status
 
@@ -87,7 +90,7 @@ def dashboard():
     conn = get_db_connection()
 
     destinations = conn.execute(
-        "SELECT * FROM destinations WHERE user_id = ?",
+        "SELECT * FROM destinations WHERE user_id = ? ORDER BY id DESC",
         (session["user_id"],)
     ).fetchall()
 
@@ -108,6 +111,7 @@ def add_destination():
         priority = request.form["priority"]
         status = request.form["status"]
         budget = float(request.form["budget"])
+        created_at = datetime.now().strftime("%d %B %Y - %H:%M")
 
         if not is_valid_budget(budget):
             return "Budget cannot be negative."
@@ -123,11 +127,19 @@ def add_destination():
         conn.execute(
             """
             INSERT INTO destinations
-            (name, country, reason, priority, status, budget, user_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            (name, country, reason, priority, status, budget, created_at, user_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (name, country, reason, priority,
-             status, budget, session["user_id"])
+            (
+                name,
+                country,
+                reason,
+                priority,
+                status,
+                budget,
+                created_at,
+                session["user_id"]
+            )
         )
 
         conn.commit()
@@ -162,14 +174,34 @@ def edit_destination(id):
         status = request.form["status"]
         budget = float(request.form["budget"])
 
+        if not is_valid_budget(budget):
+            conn.close()
+            return "Budget cannot be negative."
+
+        if not is_valid_priority(priority):
+            conn.close()
+            return "Invalid priority."
+
+        if not is_valid_status(status):
+            conn.close()
+            return "Invalid status."
+
         conn.execute(
             """
             UPDATE destinations
             SET name = ?, country = ?, reason = ?, priority = ?, status = ?, budget = ?
             WHERE id = ? AND user_id = ?
             """,
-            (name, country, reason, priority,
-             status, budget, id, session["user_id"])
+            (
+                name,
+                country,
+                reason,
+                priority,
+                status,
+                budget,
+                id,
+                session["user_id"]
+            )
         )
 
         conn.commit()

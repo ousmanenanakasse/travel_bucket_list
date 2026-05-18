@@ -15,6 +15,7 @@ CREATE TABLE destinations (
     priority TEXT NOT NULL,
     status TEXT NOT NULL,
     budget REAL NOT NULL,
+    created_at TEXT NOT NULL,
     user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

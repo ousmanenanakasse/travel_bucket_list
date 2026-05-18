@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Destination</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Add New Destination</h1>
-    </header>
+    <div class="container">
 
-    <main>
+        <h1>Add New Destination</h1>
 
         <form method="POST">
 
-            <div>
-                <label for="name">Destination Name:</label>
-                <br>
-                <input type="text" id="name" name="name" required>
-            </div>
+            <label for="name">Destination Name</label>
+            <input type="text" id="name" name="name" required>
 
-            <br>
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" required>
 
-            <div>
-                <label for="country">Country:</label>
-                <br>
-                <input type="text" id="country" name="country" required>
-            </div>
+            <label for="reason">Reason to Visit</label>
+            <input type="text" id="reason" name="reason" required>
 
-            <br>
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
 
-            <div>
-                <label for="reason">Reason to Visit:</label>
-                <br>
-                <input type="text" id="reason" name="reason" required>
-            </div>
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option>Planned</option>
+                <option>Visited</option>
+            </select>
 
-            <br>
+            <label for="budget">Estimated Budget</label>
+            <input type="number" id="budget" name="budget" step="0.01" required>
 
-            <div>
-                <label for="priority">Priority:</label>
-                <br>
-
-                <select id="priority" name="priority">
-
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-
-                </select>
-            </div>
-
-            <br>
-
-            <div>
-                <label for="status">Status:</label>
-                <br>
-
-                <select id="status" name="status">
-
-                    <option>Planned</option>
-                    <option>Visited</option>
-
-                </select>
-            </div>
-
-            <br>
-
-            <div>
-                <label for="budget">Estimated Budget:</label>
-                <br>
-
-                <input
-                    type="number"
-                    id="budget"
-                    name="budget"
-                    step="0.01"
-                    required
-                >
-            </div>
-
-            <br>
-
-            <div>
-                <button type="submit">
-                    Save Destination
-                </button>
-            </div>
+            <button type="submit">Save Destination</button>
 
         </form>
 
-        <br>
+        <a href="/dashboard">Back to Dashboard</a>
 
-        <a href="/dashboard">
-            Back to Dashboard
-        </a>
-
-    </main>
+    </div>
 
 </body>
-
 </html>
